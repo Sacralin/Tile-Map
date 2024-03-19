@@ -152,14 +152,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d86d2bc4f087742b1b5c87ab1b077d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newMapX: 50
-  newMapY: 25
+  spawnPositionX: 0
+  spawnPositionY: 0
+  spawnPositionZ: 0
+  mapX: 25
+  mapY: 25
+  scale: {x: 1, y: 1, z: 1}
   grassCubePrefab: {fileID: 586899966958414030, guid: 070c2a084c2985c4cbf7d032fadd80e0, type: 3}
-  newGrassCubeWeight: 1
+  grassCubeWeight: 1
   dirtCubePrefab: {fileID: 5629000161005023963, guid: 4d3f13bbb230e8045be3b1bec5443886, type: 3}
-  newDirtCubeWeight: 1
+  dirtCubeWeight: 1
   pathCubePrefab: {fileID: 4138821437037420052, guid: d8bd05fcba352004a97fee05409bbfca, type: 3}
-  newPathCubeWeight: 1
+  pathCubeWeight: 1
 --- !u!4 &315418357
 Transform:
   m_ObjectHideFlags: 0

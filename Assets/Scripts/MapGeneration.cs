@@ -1,12 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 
 public class MapGeneration : MonoBehaviour
 {
+    // map spawn position settings
+    static float currentSpawnPositionX = 0;
+    static float currentSpawnPositionY = 0;
+    static float currentSpawnPositionZ = 0;
+    public float spawnPositionX = 0;
+    public float spawnPositionY = 0;
+    public float spawnPositionZ = 0;
+
     // map size settings
     static int currentMapX = 25; //define map x
     static int currentMapY = 25; //define map y
@@ -18,10 +27,10 @@ public class MapGeneration : MonoBehaviour
     public Vector3 scale = new Vector3(1,1,1);
 
     // set number of path start points
-    public int pathsXMin = 0;
-    public int pathsXMax = 0;
-    public int pathsYMin = 0;
-    public int pathsYMax = 0;
+    //public int pathsXMin = 0;
+    //public int pathsXMax = 0;
+    //public int pathsYMin = 0;
+    //public int pathsYMax = 0;
 
     // tile weight and prefab settings
     public GameObject grassCubePrefab;
@@ -39,6 +48,8 @@ public class MapGeneration : MonoBehaviour
     Dictionary<GameObject, int> weights;
     static GameObject[,] tileMap;
     
+
+
     
     // Start is called before the first frame update
     void Start()
@@ -93,6 +104,16 @@ public class MapGeneration : MonoBehaviour
             GenerateMap();
 
         }
+        //check if spawn position is altered
+        if(currentSpawnPositionX != spawnPositionX || currentSpawnPositionY != spawnPositionY || currentSpawnPositionZ != spawnPositionZ)
+        {
+            currentSpawnPositionX = spawnPositionX;
+            currentSpawnPositionY = spawnPositionY;
+            currentSpawnPositionZ = spawnPositionZ;
+
+            GenerateMap();
+        }
+
     }
 
     private void GenerateMap() // generates the map randomly and stores the generated map in the tileMap array.
@@ -119,7 +140,7 @@ public class MapGeneration : MonoBehaviour
                     checkTileChance = weightsTotal - getWeight;
                     if (randomSelector >= checkTileChance)
                     {
-                        Vector3 position = new Vector3(currentScale.x * i, currentScale.y * 0, currentScale.z * j);
+                        Vector3 position = new Vector3(spawnPositionX + currentScale.x * i, spawnPositionY + currentScale.y * 0, spawnPositionZ + currentScale.z * j);
                         Instantiate(kvp.Key, position, Quaternion.identity);
                         tileMap[i, j] = kvp.Key;
                         break;
